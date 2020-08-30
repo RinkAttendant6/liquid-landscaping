@@ -1,0 +1,3 @@
+{
+    "*.{css,m?js,md,svg}": "npx prettier --write"
+}

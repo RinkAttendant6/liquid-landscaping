@@ -1,0 +1,26 @@
+{
+    "name": "auth-demo-1",
+    "version": "1.0.0",
+    "description": "Integrated authentication demo 1",
+    "main": "index.mjs",
+    "scripts": {
+        "start": "node --experimental-modules index.mjs",
+        "watch": "nodemon --experimental-modules index.mjs"
+    },
+    "author": "Vincent Diep",
+    "type": "module",
+    "license": "SEE LICENSE IN LICENSE.md",
+    "dependencies": {
+        "express": "^4.17.1",
+        "nunjucks": "^3.2.2"
+    },
+    "devDependencies": {
+        "husky": "^4.2.5",
+        "lint-staged": "^10.2.13",
+        "nodemon": "^2.0.4",
+        "prettier": "2.1.1"
+    },
+    "engines": {
+        "node": ">=12"
+    }
+}
