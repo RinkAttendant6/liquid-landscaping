@@ -55,20 +55,23 @@ const samlStrategy = new saml.Strategy(
         signatureAlgorithm: "sha256",
         digestAlgorithm: "sha256",
     },
-    (profile, done) => done(null, profile)
+    (profile, done) => {
+        console.log(profile);
+        return done(null, profile);
+    }
 );
 
 passport.use(samlStrategy);
 
 app.set("view engine", "njk");
-app.use(cookieParser());
+app.use(cookieParser("keyboard cat"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(
     session({
         cookie: {
-            secure: process.env.NODE_ENV === "production",
             httpOnly: true,
+            sameSite: "lax",
         },
         resave: true,
         saveUninitialized: false,

@@ -22,6 +22,7 @@ export default (passport, samlStrategy) => {
         "/login/callback",
         passport.authenticate(strategy, { failureRedirect: "/login/fail" }),
         (req, res) => {
+            console.dir(req);
             res.redirect("/profile");
         }
     );
