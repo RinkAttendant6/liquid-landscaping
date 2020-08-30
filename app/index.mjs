@@ -28,11 +28,10 @@ passport.deserializeUser((user, done) => {
 const samlStrategy = new saml.Strategy(
     {
         // URL that goes from the Identity Provider -> Service Provider
-        //callbackUrl: process.env.CALLBACK_URL,
-        path: "/login/callback",
+        callbackUrl: process.env.SAML_CALLBACK_URL,
 
         // URL that goes from the Service Provider -> Identity Provider
-        entryPoint: process.env.ENTRY_POINT,
+        entryPoint: process.env.SAML_ENTRY_POINT,
         issuer: process.env.ISSUER || "demo1-sp",
         //identifierFormat: null,
 
