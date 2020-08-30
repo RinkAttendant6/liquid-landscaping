@@ -45,7 +45,9 @@ const samlStrategy = new saml.Strategy(
         privateCert: fs.readFileSync(__dirname + "/../certs/key.pem", "utf8"),
 
         // Identity Provider's public key
-        cert: fs.readFileSync(__dirname + "/../certs/idp_cert.pem", "utf8"),
+        cert:
+            process.env.IDP_CERT ||
+            fs.readFileSync(__dirname + "/../certs/idp_cert.pem", "utf8"),
 
         validateInResponseTo: false,
         disableRequestedAuthnContext: true,
