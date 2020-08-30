@@ -8,19 +8,21 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const router = express.Router();
 
 export default (passport, samlStrategy) => {
+    const strategy = "saml";
+
     router.get(
         "/login",
-        passport.authenticate("saml", { failureRedirect: "/login/fail" }),
-        (req, res) => {
-            res.redirect("/");
-        }
+        passport.authenticate(strategy, {
+            successRedirect: "/profile",
+            failureRedirect: "/login/fail",
+        })
     );
 
     router.post(
         "/login/callback",
-        passport.authenticate("saml", { failureRedirect: "/login/fail" }),
+        passport.authenticate(strategy, { failureRedirect: "/login/fail" }),
         (req, res) => {
-            res.redirect("/");
+            res.redirect("/profile");
         }
     );
 

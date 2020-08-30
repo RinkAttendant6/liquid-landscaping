@@ -1,3 +1,5 @@
+import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
 import express from "express";
 import fs from "fs";
 import nunjucks from "nunjucks";
@@ -6,6 +8,7 @@ import saml from "passport-saml";
 import { dirname } from "path";
 import routes from "./routes/index.mjs";
 import routes2 from "./routes/authentication.mjs";
+import session from "express-session";
 import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -55,6 +58,21 @@ const samlStrategy = new saml.Strategy(
 
 passport.use(samlStrategy);
 
+app.set("view engine", "njk");
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(
+    session({
+        cookie: {
+            secure: process.env.NODE_ENV === "production",
+            httpOnly: true,
+        },
+        resave: true,
+        saveUninitialized: false,
+        secret: "keyboard cat",
+    })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 

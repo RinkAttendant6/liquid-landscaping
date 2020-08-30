@@ -1,21 +1,21 @@
-import express from 'express';
+import express from "express";
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.render('index.html');
+router.get("/", (req, res) => {
+    res.render("index");
 });
 
-router.get('/logout', (req, res) => {
+router.get("/logout", (req, res) => {
     req.logout();
-    res.redirect('/');
+    res.redirect("/");
 });
 
-router.get('/profile', (req, res) => {
+router.get("/profile", (req, res) => {
     if (req.isAuthenticated()) {
-        res.render('profile', { user: req.user });
+        res.render("profile", { user: req.user || null });
     } else {
-        res.redirect('/login');
+        res.redirect("/login");
     }
 });
 
