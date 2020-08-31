@@ -2,6 +2,7 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import express from "express";
 import fs from "fs";
+import helmet from "helmet";
 import nunjucks from "nunjucks";
 import passport from "passport";
 import saml from "passport-saml";
@@ -64,6 +65,28 @@ const samlStrategy = new saml.Strategy(
 passport.use(samlStrategy);
 
 app.set("view engine", "njk");
+
+app.use(
+    helmet({
+        contentSecurityPolicy: {
+            directives: {
+                defaultSrc: ["'self'"],
+                scriptSrc: [
+                    "'self'",
+                    "https://code.jquery.com/",
+                    "https://stackpath.bootstrapcdn.com/",
+                ],
+                styleSrc: ["'self'", "https://stackpath.bootstrapcdn.com/"],
+                baseUri: ["'self'"],
+                blockAllMixedContent: [],
+                frameAncestors: ["'self'"],
+                upgradeInsecureRequests: [],
+            },
+        },
+        expectCt: false,
+        hsts: false, // for demo purposes
+    })
+);
 app.use(cookieParser("keyboard cat"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
