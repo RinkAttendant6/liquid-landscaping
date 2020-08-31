@@ -1,4 +1,12 @@
 {
     "tabWidth": 4,
-    "quoteProps": "consistent"
+    "quoteProps": "consistent",
+    "overrides": [
+        {
+            "files": ["*.njk"],
+            "options": {
+                "parser": "html"
+            }
+        }
+    ]
 }

@@ -1,59 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-    <meta charset="utf-8" />
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link
-        rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-        crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="/css/main.css" />
-    <link rel="icon" href="/images/logo.svg" />
-    <title>Liquid Landscaping (auth demo 1)</title>
-
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+            integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+            crossorigin="anonymous"
+        />
+        <link href="/css/dashboard.css" rel="stylesheet" />
+        <link rel="icon" href="/images/logo.svg" />
+        <title>Dashboard - Liquid Landscaping</title>
+    </head>
     <body>
-        <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-            <header class="masthead mb-auto">
-                <div class="inner">
-                    <h3 class="masthead-brand">
-                        <img
-                            src="/images/logo.svg"
-                            alt="Liquid Landscaping logo"
-                            width="100"
-                        />
-                    </h3>
-                    <nav class="nav nav-masthead justify-content-center">
-                        <a class="nav-link" href="/">Home</a>
-                        <a class="nav-link active" href="/profile">Profile</a>
-                    </nav>
-                </div>
-            </header>
+        <nav
+            class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow"
+        >
+            <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">
+                <img
+                    src="/images/logo.svg"
+                    alt="Liquid Landscaping logo"
+                    width="50"
+                />
+                Liquid Landscaping
+            </a>
+            <button
+                class="navbar-toggler position-absolute d-md-none collapsed"
+                type="button"
+                data-toggle="collapse"
+                data-target="#sidebarMenu"
+                aria-controls="sidebarMenu"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <input
+                class="form-control form-control-dark w-100"
+                type="text"
+                placeholder="Search"
+                aria-label="Search"
+            />
+            <ul class="navbar-nav px-3">
+                <li class="nav-item text-nowrap">
+                    <a class="nav-link" href="/logout">Sign out</a>
+                </li>
+            </ul>
+        </nav>
 
-            <main role="main" class="inner cover">
-                <h1 class="cover-heading">Liquid Landscaping</h1>
-                <p class="lead">
-                    This application only supports signing in with SAML-based
-                    authentication since only internal users within the
-                    organization should access this.
-                </p>
-                <div>
-                    {{ user | dump }}
-                </div>
-            </main>
+        <div class="container-fluid">
+            <div class="row">
+                <nav
+                    id="sidebarMenu"
+                    class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"
+                >
+                    <div class="sidebar-sticky pt-3">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">
+                                    Dashboard
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"> Orders </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"> Products </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"> Customers </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"> Reports </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"> Integrations </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
 
-            <footer class="mastfoot mt-auto">
-                <div class="inner">
-                    <p>
-                        Cover template for
-                        <a href="https://getbootstrap.com/">Bootstrap</a>, by
-                        <a href="https://twitter.com/mdo">@mdo</a>.
-                    </p>
-                </div>
-            </footer>
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+                    <div
+                        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+                    >
+                        <h1 class="h2">Dashboard</h1>
+                    </div>
+
+                    <h2>
+                        Hello {{
+                        user['http://schemas.microsoft.com/identity/claims/displayname']
+                        }}
+                    </h2>
+                    <pre>{{ user|dump(2) }}</pre>
+                </main>
+            </div>
         </div>
+        <script
+            src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
+            integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf"
+            crossorigin="anonymous"
+        ></script>
     </body>
 </html>
