@@ -83,6 +83,9 @@ app.use(
                 upgradeInsecureRequests: [],
             },
         },
+        crossOriginEmbedderPolicy: true,
+        crossOriginOpenerPolicy: true,
+        crossOriginResourcePolicy: true,
         expectCt: false,
         hsts: false, // for demo purposes
     })
