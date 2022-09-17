@@ -1,9 +1,5 @@
 import express from "express";
-import fs from "fs";
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
+import fs from "node:fs";
 
 const router = express.Router();
 
@@ -38,7 +34,7 @@ export default (passport, samlStrategy) => {
 
     router.get("/saml_metadata", (req, res) => {
         const cert = fs.readFileSync(
-            __dirname + "/../../certs/cert.pem",
+            new URL("../../certs/cert.pem", import.meta.url),
             "utf8"
         );
         res.type("application/xml");

@@ -1,16 +1,17 @@
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import express from "express";
-import fs from "fs";
+import fs from "node:fs";
 import helmet from "helmet";
 import nunjucks from "nunjucks";
 import passport from "passport";
+import process from "node:process";
 import saml from "passport-saml";
-import { dirname } from "path";
+import { dirname } from "node:path";
 import routes from "./routes/index.mjs";
 import routes2 from "./routes/authentication.mjs";
 import session from "express-session";
-import { fileURLToPath } from "url";
+import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -40,15 +41,23 @@ const samlStrategy = new saml.Strategy(
         //identifierFormat: null,
 
         // Service Provider private key
-        decryptionPvk: fs.readFileSync(__dirname + "/../certs/key.pem", "utf8"),
+        decryptionPvk: fs.readFileSync(
+            new URL("../certs/key.pem", import.meta.url),
+            { encoding: "utf-8" }
+        ),
 
         // Service Provider Certificate
-        privateCert: fs.readFileSync(__dirname + "/../certs/key.pem", "utf8"),
+        privateKey: fs.readFileSync(
+            new URL("../certs/key.pem", import.meta.url),
+            { encoding: "utf-8" }
+        ),
 
         // Identity Provider's public key
         cert:
             process.env.IDP_CERT ||
-            fs.readFileSync(__dirname + "/../certs/idp_cert.pem", "utf8"),
+            fs.readFileSync(new URL("../certs/idp_cert.pem", import.meta.url), {
+                encoding: "utf-8",
+            }),
 
         validateInResponseTo: false,
         disableRequestedAuthnContext: true,
