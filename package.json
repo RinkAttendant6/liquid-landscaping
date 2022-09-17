@@ -4,30 +4,30 @@
     "description": "Integrated authentication demo 1",
     "main": "index.mjs",
     "scripts": {
-        "start": "node --experimental-modules index.mjs",
-        "watch": "nodemon --ext mjs,js,json,njk --experimental-modules index.mjs",
+        "start": "node index.mjs",
+        "watch": "nodemon --ext mjs,js,json,njk index.mjs",
         "prepare": "husky install"
     },
     "author": "Vincent Diep",
     "type": "module",
     "license": "SEE LICENSE IN LICENSE.md",
     "dependencies": {
-        "body-parser": "^1.19.0",
-        "cookie-parser": "^1.4.5",
-        "express": "^4.17.1",
-        "express-session": "^1.17.2",
-        "helmet": "^4.6.0",
+        "body-parser": "^1.20.0",
+        "cookie-parser": "^1.4.6",
+        "express": "^4.18.1",
+        "express-session": "^1.17.3",
+        "helmet": "^6.0.0",
         "nunjucks": "^3.2.3",
-        "passport": "^0.4.1",
+        "passport": "^0.6.0",
         "passport-saml": "^2.2.0"
     },
     "devDependencies": {
         "husky": "^6.0.0",
-        "lint-staged": "^11.0.0",
-        "nodemon": "^2.0.7",
-        "prettier": "2.3.1"
+        "lint-staged": "^13.0.3",
+        "nodemon": "^2.0.20",
+        "prettier": "2.7.1"
     },
     "engines": {
-        "node": ">=12"
+        "node": ">=16"
     }
 }
