@@ -1,33 +1,34 @@
 {
-    "name": "auth-demo-1",
-    "version": "1.0.0",
-    "description": "Integrated authentication demo 1",
-    "main": "index.mjs",
-    "scripts": {
-        "start": "node index.mjs",
-        "watch": "nodemon --ext mjs,js,json,njk index.mjs",
-        "prepare": "husky install"
-    },
-    "author": "Vincent Diep",
-    "type": "module",
-    "license": "SEE LICENSE IN LICENSE.md",
-    "dependencies": {
-        "body-parser": "^1.20.0",
-        "cookie-parser": "^1.4.6",
-        "express": "^4.18.1",
-        "express-session": "^1.17.3",
-        "helmet": "^6.0.0",
-        "nunjucks": "^3.2.4",
-        "passport": "^0.6.0",
-        "passport-saml": "^2.2.0"
-    },
-    "devDependencies": {
-        "husky": "^6.0.0",
-        "lint-staged": "^13.0.3",
-        "nodemon": "^2.0.20",
-        "prettier": "2.7.1"
-    },
-    "engines": {
-        "node": ">=16"
-    }
+  "name": "auth-demo-1",
+  "version": "1.0.0",
+  "description": "Integrated authentication demo 1",
+  "main": "index.mjs",
+  "scripts": {
+    "start": "node index.mjs",
+    "watch": "node index.mjs --watch --watch-path=./views --watch-path=./app ",
+    "prepare": "husky"
+  },
+  "author": "Vincent Diep",
+  "type": "module",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "dependencies": {
+    "@node-saml/passport-saml": "^5.0.0",
+    "body-parser": "^1.20.0",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.21",
+    "express-session": "^1.17.3",
+    "helmet": "^8.0",
+    "morgan": "^1.10",
+    "nunjucks": "^3.2.4",
+    "passport": "^0.7"
+  },
+  "devDependencies": {
+    "@types/node": "^20.16.11",
+    "husky": "^9.1",
+    "lint-staged": "^15.2",
+    "prettier": "2.7.1"
+  },
+  "engines": {
+    "node": ">=20.17"
+  }
 }
