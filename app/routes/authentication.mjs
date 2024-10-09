@@ -37,7 +37,7 @@ export default (passport, samlStrategy) => {
             new URL("../../certs/cert.pem", import.meta.url),
             "utf8"
         );
-        res.type("application/xml");
+        res.type("application/samlmetadata+xml");
         res.status(200).send(
             samlStrategy.generateServiceProviderMetadata(cert, cert)
         );
