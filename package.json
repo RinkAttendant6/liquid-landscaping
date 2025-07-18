@@ -16,7 +16,7 @@
     "body-parser": "^1.20.0",
     "cookie-parser": "^1.4.6",
     "express": "^4.21",
-    "express-session": "^1.17.3",
+    "express-session": "^1.18.2",
     "helmet": "^8.0",
     "morgan": "^1.10",
     "nunjucks": "^3.2.4",
